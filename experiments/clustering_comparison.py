@@ -7,7 +7,7 @@ from scipy.spatial.distance import pdist, squareform
 from hdbscan import HDBSCAN
 
 # データの読み込み
-def load_data(data_dir="../dataset/aipubcom"):
+def load_data(data_dir="dataset/aipubcom"):
     """データの読み込みと前処理を行う関数"""
     embeddings_df = pd.read_pickle(f"{data_dir}/embeddings.pkl")
     arguments_df = pd.read_csv(f"{data_dir}/args.csv")
@@ -26,11 +26,18 @@ embeddings_array, arguments_df = load_data()
 def perform_clustering(embeddings_array):
     """クラスタリングを実行する関数"""
     # HDBSCANクラスタリング（既存の設定を再現）
-    hdbscan = HDBSCAN(min_cluster_size=5, max_cluster_size=30, min_samples=2)
+    hdbscan = HDBSCAN(
+        min_cluster_size=5,
+        max_cluster_size=30,
+        min_samples=2,
+        cluster_selection_epsilon=0.5  # クラスタの密度閾値を調整
+    )
     hdbscan_labels = hdbscan.fit_predict(embeddings_array)
     
     # k-meansクラスタリング（HDBSCANと同じクラスタ数）
     n_clusters = len(set(hdbscan_labels[hdbscan_labels != -1]))  # ノイズを除外したクラスタ数
+    if n_clusters < 10:  # クラスタ数が少なすぎる場合は調整
+        n_clusters = min(48, len(embeddings_array) // 10)  # データサイズの1/10か48のいずれか小さい方
     kmeans = KMeans(n_clusters=n_clusters, random_state=42)
     kmeans_labels = kmeans.fit_predict(embeddings_array)
     
@@ -73,12 +80,17 @@ hdbscan_silhouette = silhouette_score(embeddings_array[hdbscan_labels != -1],
 
 def visualize_results(kmeans_metrics, hdbscan_metrics, output_dir='.'):
     """クラスタリング結果を可視化する関数"""
-    plt.figure(figsize=(15, 6))
+    plt.figure(figsize=(15, 10))
     
     # 平均距離の分布を比較
-    plt.subplot(1, 2, 1)
-    plt.hist(kmeans_metrics['avg_distance'], alpha=0.5, label='K-means', bins=20, color='blue')
-    plt.hist(hdbscan_metrics['avg_distance'], alpha=0.5, label='HDBSCAN', bins=20, color='red')
+    plt.subplot(2, 1, 1)
+    bins = np.linspace(
+        min(kmeans_metrics['avg_distance'].min(), hdbscan_metrics['avg_distance'].min()),
+        max(kmeans_metrics['avg_distance'].max(), hdbscan_metrics['avg_distance'].max()),
+        10
+    )
+    plt.hist(kmeans_metrics['avg_distance'], alpha=0.5, label='K-means', bins=bins, color='blue')
+    plt.hist(hdbscan_metrics['avg_distance'], alpha=0.5, label='HDBSCAN', bins=bins, color='red')
     plt.xlabel('Average Distance within Cluster')
     plt.ylabel('Number of Clusters')
     plt.title('Distribution of Cluster Density')
@@ -86,9 +98,14 @@ def visualize_results(kmeans_metrics, hdbscan_metrics, output_dir='.'):
     plt.legend()
     
     # クラスタサイズの分布を比較
-    plt.subplot(1, 2, 2)
-    plt.hist(kmeans_metrics['size'], alpha=0.5, label='K-means', bins=20, color='blue')
-    plt.hist(hdbscan_metrics['size'], alpha=0.5, label='HDBSCAN', bins=20, color='red')
+    plt.subplot(2, 1, 2)
+    bins = np.linspace(
+        min(kmeans_metrics['size'].min(), hdbscan_metrics['size'].min()),
+        max(kmeans_metrics['size'].max(), hdbscan_metrics['size'].max()),
+        10
+    )
+    plt.hist(kmeans_metrics['size'], alpha=0.5, label='K-means', bins=bins, color='blue')
+    plt.hist(hdbscan_metrics['size'], alpha=0.5, label='HDBSCAN', bins=bins, color='red')
     plt.xlabel('Cluster Size')
     plt.ylabel('Number of Clusters')
     plt.title('Distribution of Cluster Sizes')
