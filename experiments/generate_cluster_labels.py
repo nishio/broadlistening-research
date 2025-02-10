@@ -48,11 +48,14 @@ VALIDATION_PROMPT = """生成されたラベルと意見グループを確認し
 3. 代表的な意見の選択
 
 # 出力形式
-{
-    "is_valid": true/false,
+以下のJSONフォーマットで回答してください：
+{{
+    "is_valid": true,
     "improved_label": "改善案（必要な場合）",
     "representative_ids": ["id1", "id2", "id3"]
-}"""
+}}
+
+注意：必ず有効なJSONを出力してください。"""
 
 def get_outside_cluster_samples(df, current_cluster_id, sample_size=5):
     """クラスタ外の意見をサンプリング"""
@@ -116,14 +119,32 @@ def validate_label(client, label_info, examples):
         examples="\n".join([f"* {ex}" for ex in examples])
     )
     
-    response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": validation_content}],
-        temperature=0.4,
-        response_format={"type": "json_object"}
-    )
-    
-    return json.loads(response.choices[0].message.content)
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": validation_content}],
+            temperature=0.4,
+            response_format={"type": "json_object"}
+        )
+        
+        # 結果の解析
+        content = response.choices[0].message.content.strip()
+        if not content.startswith('{'):
+            content = content[content.find('{'):]
+        if not content.endswith('}'):
+            content = content[:content.rfind('}')+1]
+        
+        result = json.loads(content)
+        
+        # 必須フィールドの確認
+        required_fields = ["is_valid", "improved_label", "representative_ids"]
+        if not all(field in result for field in required_fields):
+            raise ValueError(f"Missing required fields: {[f for f in required_fields if f not in result]}")
+        
+        return result
+    except (json.JSONDecodeError, ValueError) as e:
+        print(f"\n警告: 検証結果のJSON解析エラー: {e}")
+        return {"is_valid": False, "improved_label": str(e), "representative_ids": []}
 
 def preprocess_clusters(df):
     """
@@ -234,23 +255,39 @@ def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file=
                 if attempt == max_retries - 1:
                     raise ValueError(f"ラベル生成に失敗: {e}")
             
-            # 結果の解析
-            result = json.loads(response.choices[0].message.content)
-            
-            # Step 2: Validate and improve label
-            validation_result = validate_label(client, result, cluster_texts[:5])
-            
-            # 検証結果の確認
-            if validation_result["is_valid"]:
-                break
-            
-            validation_reason = validation_result.get("improved_label", "ラベルが要件を満たしていません")
-            print(f"\n警告: 試行 {attempt + 1}/{max_retries} が失敗しました。理由: {validation_reason}")
-            
-            if attempt == max_retries - 1 and validation_result.get("improved_label"):
-                # 最終試行でも失敗した場合は改善案を採用
-                result["label"] = validation_result["improved_label"]
-                print(f"\n注意: 最終的に改善案を採用: {validation_result['improved_label']}")
+            try:
+                # 結果の解析
+                content = response.choices[0].message.content.strip()
+                if not content.startswith('{'):
+                    content = content[content.find('{'):]
+                if not content.endswith('}'):
+                    content = content[:content.rfind('}')+1]
+                
+                result = json.loads(content)
+                
+                # 必須フィールドの確認
+                required_fields = ["label", "description", "keywords", "sentiment"]
+                if not all(field in result for field in required_fields):
+                    raise ValueError(f"Missing required fields: {[f for f in required_fields if f not in result]}")
+                
+                # Step 2: Validate and improve label
+                validation_result = validate_label(client, result, cluster_texts[:5])
+                
+                # 検証結果の確認
+                if validation_result.get("is_valid", False):
+                    break
+                
+                validation_reason = validation_result.get("improved_label", "ラベルが要件を満たしていません")
+                print(f"\n警告: 試行 {attempt + 1}/{max_retries} が失敗しました。理由: {validation_reason}")
+                
+                if attempt == max_retries - 1 and validation_result.get("improved_label"):
+                    # 最終試行でも失敗した場合は改善案を採用
+                    result["label"] = validation_result["improved_label"]
+                    print(f"\n注意: 最終的に改善案を採用: {validation_result['improved_label']}")
+            except (json.JSONDecodeError, ValueError) as e:
+                print(f"\n警告: JSON解析エラー（試行 {attempt + 1}/{max_retries}）: {e}")
+                if attempt == max_retries - 1:
+                    raise ValueError(f"ラベル生成に失敗: {e}")
         
         # メタデータの追加
         result["cluster_id"] = int(cluster_id)
