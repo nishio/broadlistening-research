@@ -1,0 +1,1027 @@
+[
+  {
+    "label": "未定義の意見グループ",
+    "description": "このグループには意見が提供されていません。したがって、共通点や特徴を特定することはできません。",
+    "keywords": [],
+    "sentiment": "neutral",
+    "cluster_id": 22,
+    "size": 8,
+    "texts": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "label": "意見グループが空",
+    "description": "提供された意見グループには情報が含まれていません。意見の分析には具体的な情報が必要です。",
+    "keywords": [],
+    "sentiment": "neutral",
+    "cluster_id": 39,
+    "size": 16,
+    "texts": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "label": "意見なし",
+    "description": "このグループには意見が提供されていないため、共通点や特徴を分析することができません。",
+    "keywords": [],
+    "sentiment": "neutral",
+    "cluster_id": 48,
+    "size": 22,
+    "texts": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "label": "未定義グループ",
+    "description": "意見グループが提供されていません。このため、共通点や特徴を特定することができません。",
+    "keywords": [],
+    "sentiment": "neutral",
+    "cluster_id": 49,
+    "size": 5,
+    "texts": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "label": "",
+    "description": "",
+    "keywords": [],
+    "sentiment": "neutral",
+    "cluster_id": 60,
+    "size": 7,
+    "texts": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "label": "",
+    "description": "",
+    "keywords": [],
+    "sentiment": "",
+    "cluster_id": 64,
+    "size": 7,
+    "texts": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 68,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループ分析",
+    "description": "意見グループの内容を提供してください。分析結果をJSONフォーマットでお届けします。",
+    "keywords": [
+      "意見",
+      "グループ",
+      "分析"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 71,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 89,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 91,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "意見グループの共通点や特徴を簡潔に説明します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見の全体的なトーン",
+    "cluster_id": 97,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 107,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "ラベル例",
+    "description": "このグループは技術革新に対してポジティブで、特にAIと自動化の進展を歓迎する意見が多いです。",
+    "keywords": [
+      "技術革新",
+      "AI",
+      "自動化"
+    ],
+    "sentiment": "positive",
+    "cluster_id": 121,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルラベル",
+    "description": "この意見グループは、特定の商品やサービスに対する満足度や不満を表明しています。参加者は具体的な改善点や利点について詳細に言及しています。",
+    "keywords": [
+      "満足度",
+      "改善点",
+      "利点"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 142,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 144,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "意見グループの共通点や特徴を簡潔に説明します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 171,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 172,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 209,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 255,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルグループ",
+    "description": "意見グループの分析結果をJSONフォーマットで提供。全体的な特徴や共通点を簡潔にまとめ、主要キーワードを抽出。",
+    "keywords": [
+      "JSON",
+      "意見分析",
+      "特徴"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 267,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "このグループの意見の共通点や特徴をここに記載します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 294,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループが提供されていません",
+    "description": "意見グループに関する情報が不足しているため、分析ができません。具体的な意見や内容を提供してください。",
+    "keywords": [
+      "意見不足",
+      "情報不足",
+      "分析不可"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 303,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 320,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 330,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプル意見グループ",
+    "description": "この意見グループは、特定のテーマに対して共通の見解や感情を持つ人々の集合です。",
+    "keywords": [
+      "意見",
+      "共通点",
+      "感情"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 331,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルグループ",
+    "description": "このグループは特定の製品に対するポジティブな意見を共有し、品質とコストパフォーマンスを重視しています。",
+    "keywords": [
+      "製品",
+      "品質",
+      "コストパフォーマンス"
+    ],
+    "sentiment": "positive",
+    "cluster_id": 356,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "このグループの意見の共通点や特徴をここに記載します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 368,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 378,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 389,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "この意見グループは、特定のテーマや問題に対する共通の見解や関心を持つ人々の集まりです。意見の傾向や特徴を分析することで、グループの特徴を理解できます。",
+    "keywords": [
+      "意見",
+      "テーマ",
+      "共通点"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 433,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルラベル",
+    "description": "このグループは、技術革新による効率化を支持し、その影響をポジティブに捉える意見が多い。",
+    "keywords": [
+      "技術革新",
+      "効率化",
+      "ポジティブ"
+    ],
+    "sentiment": "positive",
+    "cluster_id": 443,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "意見グループを詳細に理解するための情報が必要です。",
+    "keywords": [
+      "例",
+      "サンプル",
+      "データ"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 468,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 481,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "具体的な意見が必要",
+    "description": "意見グループの具体的な内容が提供されていないため、分析ができません。具体的な意見やコメントを共有してください。",
+    "keywords": [
+      "意見",
+      "分析",
+      "情報不足"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 504,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループの例",
+    "description": "このグループは、特定の製品に対する肯定的なフィードバックが多く、品質とデザインに満足していることが特徴です。",
+    "keywords": [
+      "製品",
+      "品質",
+      "デザイン"
+    ],
+    "sentiment": "positive",
+    "cluster_id": 515,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "このグループは、特定のトピックに対する共通の視点や考え方を持つ人々から構成されています。彼らの意見は、特定の問題に対する解決策や改善案に焦点を当てています。",
+    "keywords": [
+      "意見",
+      "共通点",
+      "特徴"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 523,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 536,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 547,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルグループ",
+    "description": "このグループには、特定の製品やサービスに対する意見が集まっており、ユーザーの満足度や不満が示されています。",
+    "keywords": [
+      "製品",
+      "サービス",
+      "ユーザー意見"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 551,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルラベル",
+    "description": "このグループの意見は、特定のテーマに対して全体的に肯定的であり、主にその利点やポジティブな側面に焦点を当てています。",
+    "keywords": [
+      "テーマ",
+      "利点",
+      "ポジティブ"
+    ],
+    "sentiment": "positive",
+    "cluster_id": 556,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルラベル",
+    "description": "このグループは環境問題に関する意見で、特に再生可能エネルギーの推進を強調しています。持続可能な開発を目指す姿勢が共通しています。",
+    "keywords": [
+      "環境問題",
+      "再生可能エネルギー",
+      "持続可能"
+    ],
+    "sentiment": "positive",
+    "cluster_id": 561,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループの概要",
+    "description": "このグループは、特定のテーマに対する共通の意見や見解を持っており、その特徴や考え方に焦点を当てています。",
+    "keywords": [
+      "テーマ",
+      "見解",
+      "特徴"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 562,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "分析が必要です",
+    "description": "意見グループの具体的な内容が提供されていないため、分析を行うことができません。具体的な意見の内容を提供してください。",
+    "keywords": [
+      "意見",
+      "分析",
+      "情報不足"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 564,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "このグループの意見の共通点や特徴を説明するテキストがここに入ります。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 605,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルラベル",
+    "description": "このグループは製品のデザインと機能性を高く評価し、特に使いやすさに注目しています。改善点として価格の高さを指摘する意見もあります。",
+    "keywords": [
+      "デザイン",
+      "機能性",
+      "使いやすさ"
+    ],
+    "sentiment": "positive",
+    "cluster_id": 625,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "ここにグループの意見の共通点や特徴を記述します。要点をまとめて、具体的な情報を含めると良いです。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 640,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループの分析",
+    "description": "意見グループの分析結果をJSONフォーマットで示します。各意見の共通点や特徴、主要なキーワード、全体的なトーンに基づいて分類します。",
+    "keywords": [
+      "意見",
+      "分析",
+      "共通点"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 675,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプル意見グループ",
+    "description": "このグループは、特定の商品やサービスに対する一般的な満足度と改善点に焦点を当てています。利用者の体験をもとにした具体的なフィードバックが多いです。",
+    "keywords": [
+      "満足度",
+      "改善点",
+      "フィードバック"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 686,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "意見グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 691,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "ラベルを記入してください",
+    "description": "意見グループの具体的な内容を提示してください。そうすれば、共通点や特徴を分析できます。",
+    "keywords": [
+      "キーワードを",
+      "入力する",
+      "必要があります"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 693,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループ解析",
+    "description": "この解析では意見グループを代表するラベルや特徴、関連するキーワードを抽出し、全体的なトーンを評価します。",
+    "keywords": [
+      "意見",
+      "グループ",
+      "解析"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 741,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 751,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "グループの説明",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 752,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "この意見グループの共通点や特徴をここに記述します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 795,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "この意見グループの記述をここに記入してください。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 829,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルグループ",
+    "description": "ここに意見グループの具体的な内容がないため、サンプルとしての回答を示しています。",
+    "keywords": [
+      "サンプル",
+      "意見",
+      "分析"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 867,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "このグループの意見の共通点や特徴を簡潔に説明します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 944,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "サンプルラベル",
+    "description": "このグループは特定のテーマに対して共通のポジティブな意見を持っており、革新や新しいアイデアを支持する傾向があります。",
+    "keywords": [
+      "革新",
+      "ポジティブ",
+      "サポート"
+    ],
+    "sentiment": "positive",
+    "cluster_id": 949,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "意見グループの共通点や特徴についての説明がここに入ります。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 962,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "この意見グループの共通点や特徴についての説明がここに入ります。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 977,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "意見グループの共通点や特徴を説明します。この情報は200文字以内で要約され、グループ内の一貫したテーマや考え方を反映しています。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 990,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループの分析",
+    "description": "意見グループの内容を提供していただければ、その分析結果をJSONフォーマットで提供いたします。",
+    "keywords": [
+      "意見",
+      "分析",
+      "JSON"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 993,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "意見グループの共通点や特徴を記述する。具体的な意見の傾向や共通するテーマを簡潔に説明する。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 1071,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "このグループの意見の共通点や特徴を簡潔にまとめた説明をここに記載します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 1117,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "意見グループのラベル",
+    "description": "この意見グループの特徴を説明するテキストをここに記載します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "neutral",
+    "cluster_id": 1193,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  },
+  {
+    "label": "グループのラベル",
+    "description": "このグループの意見の共通点や特徴をここに記述します。",
+    "keywords": [
+      "キーワード1",
+      "キーワード2",
+      "キーワード3"
+    ],
+    "sentiment": "意見のトーン",
+    "cluster_id": 1205,
+    "size": 1,
+    "texts": [
+      ""
+    ]
+  }
+]
