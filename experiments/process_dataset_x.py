@@ -12,31 +12,24 @@ def process_dataset_x():
     filtered_df = kmeans_df[kmeans_df['size'] >= 5]
     dataset_x = filtered_df.nlargest(66, 'density')
     
-    # クラスタラベルの読み込み
-    cluster_labels_df = pd.read_csv('experiments/results/hdbscan_cluster_labels.csv')
-    
     # データ型の統一とマッピング
     dataset_x['cluster_id'] = dataset_x['cluster_id'].astype(int)
-    cluster_labels_df['data_index'] = cluster_labels_df['data_index'].astype(str)
     args_df['arg-id'] = args_df['arg-id'].astype(str)
     
-    # クラスタIDとデータインデックスのマッピング
-    dataset_x_with_indices = pd.merge(
-        dataset_x,
-        cluster_labels_df[['data_index', 'cluster']],
-        left_on='cluster_id',
-        right_on='cluster',
-        how='inner'
-    )
+    # データインデックスの生成（A{cluster_id}_0 形式）
+    dataset_x['data_index'] = 'A' + dataset_x['cluster_id'].astype(str) + '_0'
     
     # テキストデータの結合
     dataset_x_with_args = pd.merge(
-        dataset_x_with_indices,
+        dataset_x,
         args_df[['arg-id', 'argument']],
         left_on='data_index',
         right_on='arg-id',
-        how='inner'  # 有効なデータのみを使用
+        how='left'  # クラスタ情報を保持
     )
+    
+    # 空の意見を除外
+    dataset_x_with_args = dataset_x_with_args[dataset_x_with_args['argument'].notna()]
     
     # クラスタ情報をCSVとして保存
     dataset_x_with_args.to_csv('experiments/results/dataset_x_clusters.csv', index=False)
