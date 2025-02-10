@@ -74,16 +74,18 @@
 1. データの準備
    - embeddings.pkl（261MB）をdataset/aipubcomに配置
      * 注意：ファイルサイズがGitHubの制限（100MB）を超えるため、リポジトリには含めない
-   - args.csvから対応するコメントIDを取得し、該当する埋め込みベクトルを抽出
+     * データ形状：(9883, 3072)
+     * 個人および組織からのパブコメを含む
+   - 実行時間の記録
+     * HDBSCANクラスタリングは10分以上の実行時間が必要
+     * メモリ使用量も記録（開始時：約1.6GB）
 
 2. クラスタリングアルゴリズムの設定
-   a) HDBSCAN
-      - min_cluster_size=3: より小さいクラスタを許容
-      - max_cluster_size=50: より大きいクラスタも許容
-      - min_samples=1: より柔軟なクラスタリング
-      - cluster_selection_epsilon=0.2: クラスタの密度閾値
-      - cluster_selection_method='leaf': より細かいクラスタを許容
-      - metric='euclidean': 距離の計算方法
+   a) HDBSCAN（オリジナルのパラメータ）
+      - min_cluster_size=5: クラスタの最小サイズ
+      - max_cluster_size=30: クラスタの最大サイズ
+      - min_samples=2: コアポイントの最小サンプル数
+      - core_dist_n_jobs=-1: 並列処理を有効化（実行時間短縮のため）
 
    b) k-means
       - n_clusters=11: HDBSCANと同じクラスタ数を使用
