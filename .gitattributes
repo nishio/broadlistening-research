@@ -1,3 +1,5 @@
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.json filter=lfs diff=lfs merge=lfs -text
 experiments/2025-11-15/classification_tree.json !text !filter !merge !diff
 experiments/2025-11-15/package.json !text !filter !merge !diff
 experiments/2025-11-15/topics_sensemaker.json !text !filter !merge !diff
