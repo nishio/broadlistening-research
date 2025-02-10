@@ -27,22 +27,23 @@ check_data_files()
 try:
     embeddings_df = pd.read_pickle(os.path.join(data_dir, 'embeddings.pkl'))
     arguments_df = pd.read_csv(os.path.join(data_dir, 'args.csv'))
+    
+    # embeddings_arrayの作成（check_data.pyを参考に修正）
+    embeddings_array = np.array(embeddings_df["embedding"].values.tolist())
+    print(f"Loaded embeddings with shape: {embeddings_array.shape}")
 except Exception as e:
     print(f"Error loading data files: {str(e)}")
+    print("Current directory:", os.getcwd())
+    print("Data directory:", data_dir)
     sys.exit(1)
 
-# embeddings_arrayの作成
-valid_indices = set(arguments_df['comment-id'].astype(str).values)
-embeddings_array = np.array([
-    embedding for idx, embedding in enumerate(embeddings_df['embedding'].values.tolist())
-    if str(idx) in valid_indices
-])
-
 # オリジナルのパラメータでクラスタリング
+print("Running HDBSCAN clustering...")
 hdb = HDBSCAN(min_cluster_size=5, max_cluster_size=30, min_samples=2)
 hdb.fit(embeddings_array)
 
 # クラスタごとの詳細な分析
+print("Calculating cluster metrics...")
 cluster_metrics = []
 distances = squareform(pdist(embeddings_array))
 
@@ -66,6 +67,7 @@ for label in sorted(set(hdb.labels_[hdb.labels_ != -1])):
     })
 
 # クラスタリング結果の保存
+print("Saving results...")
 results = {
     'timestamp': datetime.now().isoformat(),
     'parameters': {
@@ -109,7 +111,7 @@ labels_file = os.path.join(results_dir, 'hdbscan_cluster_labels.csv')
 labels_df.to_csv(labels_file, index=False)
 
 # 結果の確認と出力
-print("=== オリジナルパラメータでの結果 ===")
+print("\n=== オリジナルパラメータでの結果 ===")
 print(f"データ点の総数: {len(embeddings_array)}")
 print(f"ノイズポイントの数: {sum(hdb.labels_ == -1)}")
 print(f"クラスタ数: {len(set(hdb.labels_[hdb.labels_ != -1]))}")
