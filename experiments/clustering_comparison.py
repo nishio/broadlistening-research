@@ -27,10 +27,12 @@ def perform_clustering(embeddings_array):
     """クラスタリングを実行する関数"""
     # HDBSCANクラスタリング（既存の設定を再現）
     hdbscan = HDBSCAN(
-        min_cluster_size=5,
-        max_cluster_size=30,
-        min_samples=2,
-        cluster_selection_epsilon=0.5  # クラスタの密度閾値を調整
+        min_cluster_size=3,  # より小さいクラスタを許容
+        max_cluster_size=50,  # より大きいクラスタも許容
+        min_samples=1,  # より柔軟なクラスタリング
+        cluster_selection_epsilon=0.2,  # クラスタの密度閾値
+        cluster_selection_method='leaf',  # より細かいクラスタを許容
+        metric='euclidean'  # 距離の計算方法を明示的に指定
     )
     hdbscan_labels = hdbscan.fit_predict(embeddings_array)
     
