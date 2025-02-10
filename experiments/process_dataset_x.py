@@ -44,17 +44,27 @@ def process_dataset_x():
     print(f"Dataset Xの準備完了（{len(dataset_x)}クラスタ）")
     print("カラム一覧:", dataset_x_with_args.columns.tolist())
     
-    # クラスタラベルの生成
-    labels = generate_cluster_labels(
-        cluster_file="experiments/results/dataset_x_clusters.csv",
-        output_file="experiments/results/dataset_x_labels.json"
-    )
+    print("\nクラスタラベルの生成を開始...")
+    try:
+        labels = generate_cluster_labels(
+            cluster_file="experiments/results/dataset_x_clusters.csv",
+            output_file="experiments/results/dataset_x_labels.json"
+        )
+        print(f"クラスタラベル生成完了（{len(labels)}件）")
+    except Exception as e:
+        print(f"クラスタラベル生成中にエラーが発生: {e}")
+        return None, None
     
-    # ラベルの評価
-    evaluations = evaluate_cluster_labels(
-        labels_file="experiments/results/dataset_x_labels.json",
-        output_file="experiments/results/dataset_x_evaluation.json"
-    )
+    print("\nラベルの評価を開始...")
+    try:
+        evaluations = evaluate_cluster_labels(
+            labels_file="experiments/results/dataset_x_labels.json",
+            output_file="experiments/results/dataset_x_evaluation.json"
+        )
+        print(f"ラベル評価完了（{len(evaluations)}件）")
+    except Exception as e:
+        print(f"ラベル評価中にエラーが発生: {e}")
+        return labels, None
     
     return labels, evaluations
 

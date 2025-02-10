@@ -22,11 +22,16 @@ def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file=
     
     # クラスタごとのラベル生成
     cluster_labels = []
+    cluster_ids = sorted(df["cluster_id"].unique())
+    total_clusters = len(cluster_ids)
     
-    for cluster_id in sorted(df["cluster_id"].unique()):
+    print(f"\n全{total_clusters}クラスタのラベル生成を開始...")
+    for i, cluster_id in enumerate(cluster_ids, 1):
         # クラスタ内のテキストを取得
         cluster_texts = df[df["cluster_id"] == cluster_id]["argument"]
         cluster_texts = cluster_texts.fillna("").astype(str).tolist()
+        
+        print(f"\rクラスタ {i}/{total_clusters} のラベルを生成中...", end="")
         
         # プロンプトの作成
         prompt = f"""以下の意見グループを分析し、JSONフォーマットで回答してください：
