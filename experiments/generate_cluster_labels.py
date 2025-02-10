@@ -142,18 +142,21 @@ def preprocess_clusters(df):
     print("\nクラスタの前処理を開始...")
     original_size = len(df)
     
-    # Filter empty clusters
-    df = df[df["argument"].notna() & (df["argument"] != "")]
-    after_empty = len(df)
-    print(f"- 空のクラスタを除外: {original_size - after_empty}件")
+    # Group by cluster_id and filter clusters with too many empty arguments
+    cluster_groups = df.groupby("cluster_id")
+    valid_clusters = []
     
-    # Ensure minimum cluster size
-    cluster_sizes = df["cluster_id"].value_counts()
-    valid_clusters = cluster_sizes[cluster_sizes >= 5].index
+    for cluster_id, group in cluster_groups:
+        valid_args = group[group["argument"].notna() & (group["argument"] != "")]
+        if len(valid_args) >= 5:  # クラスタ内の有効な意見が5件以上
+            valid_clusters.append(cluster_id)
+    
     df = df[df["cluster_id"].isin(valid_clusters)]
+    df = df[df["argument"].notna() & (df["argument"] != "")]  # 最終的に空の意見を除外
+    
     after_size = len(df)
-    print(f"- サイズ5未満のクラスタを除外: {after_empty - after_size}件")
-    print(f"- 最終的なデータサイズ: {after_size}件")
+    print(f"- 有効なクラスタ数: {len(valid_clusters)}件")
+    print(f"- 最終的なデータサイズ: {after_size}件（元の{original_size}件から）")
     
     return df
 
