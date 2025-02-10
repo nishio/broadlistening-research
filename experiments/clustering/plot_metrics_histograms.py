@@ -6,23 +6,34 @@ import seaborn as sns
 def plot_metrics_histogram(hdbscan_metrics, kmeans_metrics_list, output_dir):
     """メトリクスのヒストグラムを作成"""
     metrics = ['size', 'avg_distance', 'max_distance', 'density']
-    labels = ['HDBSCAN'] + [f'k-means ({desc})' for desc in kmeans_metrics_list.keys()]
     
     for metric in metrics:
-        plt.figure(figsize=(12, 6))
+        fig, ax1 = plt.subplots(figsize=(12, 6))
+        ax2 = ax1.twinx()  # 2つ目の縦軸を作成
         
-        # HDBSCANのヒストグラム
-        plt.hist(hdbscan_metrics[metric], alpha=0.5, label='HDBSCAN', bins=20)
+        # HDBSCANのヒストグラム（左軸）
+        ax1.hist(hdbscan_metrics[metric], alpha=0.5, label='HDBSCAN', bins=20, color='blue')
         
-        # k-meansのヒストグラム
-        for desc, df in kmeans_metrics_list.items():
-            plt.hist(df[metric], alpha=0.5, label=f'k-means ({desc})', bins=20)
+        # k-means（同じクラスタ数）のヒストグラム（左軸）
+        ax1.hist(kmeans_metrics_list['same clusters'][metric], alpha=0.5, 
+                label='k-means (same clusters)', bins=20, color='orange')
         
+        # k-means（同じ平均サイズ）のヒストグラム（右軸）
+        ax2.hist(kmeans_metrics_list['same avg size'][metric], alpha=0.5,
+                label='k-means (same avg size)', bins=20, color='green')
+        
+        # タイトルと軸ラベル
         plt.title(f'Distribution of {metric}')
-        plt.xlabel(metric)
-        plt.ylabel('Frequency')
-        plt.legend()
+        ax1.set_xlabel(metric)
+        ax1.set_ylabel('Frequency (HDBSCAN & k-means same clusters)')
+        ax2.set_ylabel('Frequency (k-means same avg size)')
         
+        # 凡例
+        lines1, labels1 = ax1.get_legend_handles_labels()
+        lines2, labels2 = ax2.get_legend_handles_labels()
+        ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper right')
+        
+        # グラフの保存
         plt.savefig(os.path.join(output_dir, f'{metric}_histogram.png'))
         plt.close()
 
