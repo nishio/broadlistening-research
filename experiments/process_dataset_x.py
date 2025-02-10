@@ -23,18 +23,26 @@ def process_dataset_x():
         # クラスタIDに対応する全ての意見を取得（A{cluster_id}_* 形式）
         cluster_args = args_df[args_df['arg-id'].str.startswith(f'A{cluster_id}_')]
         if not cluster_args.empty:
-            cluster_row = row.copy()
             for _, arg_row in cluster_args.iterrows():
-                new_row = cluster_row.copy()
-                new_row['data_index'] = arg_row['arg-id']
-                new_row['argument'] = arg_row['argument']
+                new_row = {
+                    'cluster_id': row['cluster_id'],
+                    'size': row['size'],
+                    'avg_distance': row['avg_distance'],
+                    'max_distance': row['max_distance'],
+                    'density': row['density'],
+                    'data_index': arg_row['arg-id'],
+                    'argument': arg_row['argument']
+                }
                 all_args.append(new_row)
     
     # 結果をDataFrameに変換
     dataset_x_with_args = pd.DataFrame(all_args)
     
     # 空の意見を除外
-    dataset_x_with_args = dataset_x_with_args[dataset_x_with_args['argument'].notna()]
+    if len(dataset_x_with_args) > 0:
+        dataset_x_with_args = dataset_x_with_args[dataset_x_with_args['argument'].notna()]
+        print(f"\n有効なクラスタ数: {len(dataset_x_with_args['cluster_id'].unique())}件")
+        print(f"有効な意見数: {len(dataset_x_with_args)}件")
     
     # クラスタ情報をCSVとして保存
     dataset_x_with_args.to_csv('experiments/results/dataset_x_clusters.csv', index=False)
