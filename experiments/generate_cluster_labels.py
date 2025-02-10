@@ -25,7 +25,8 @@ def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file=
     
     for cluster_id in sorted(df["cluster_id"].unique()):
         # クラスタ内のテキストを取得
-        cluster_texts = df[df["cluster_id"] == cluster_id]["argument"].tolist()
+        cluster_texts = df[df["cluster_id"] == cluster_id]["argument"]
+        cluster_texts = cluster_texts.fillna("").astype(str).tolist()
         
         # プロンプトの作成
         prompt = f"""以下の意見グループを分析し、JSONフォーマットで回答してください：
