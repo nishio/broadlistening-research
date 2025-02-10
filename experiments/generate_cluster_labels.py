@@ -58,9 +58,9 @@ def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file=
         
         # 結果の解析
         result = json.loads(response.choices[0].message.content)
-        result["cluster_id"] = cluster_id
-        result["size"] = len(cluster_texts)
-        result["texts"] = cluster_texts
+        result["cluster_id"] = int(cluster_id)  # numpy.int64 -> int
+        result["size"] = int(len(cluster_texts))  # numpy.int64 -> int
+        result["texts"] = [str(text) for text in cluster_texts]  # ensure all texts are strings
         
         cluster_labels.append(result)
     
