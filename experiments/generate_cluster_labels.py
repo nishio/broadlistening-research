@@ -213,13 +213,23 @@ def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file=
                 # 2回目以降は、より具体的な指示を追加
                 prompt += f"\n\n# 注意\n前回の生成結果が無効でした。より具体的で、AIと著作権に関する論点を反映したラベルを生成してください。\n失敗理由: {validation_reason}"
             
-            # GPT-4oによる分析（低いtemperatureで一貫性を重視）
-            response = client.chat.completions.create(
-                model="gpt-4o",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.4,  # 一貫性を重視
-                response_format={"type": "json_object"}
-            )
+            try:
+                # GPT-4oによる分析（低いtemperatureで一貫性を重視）
+                response = client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.4,  # 一貫性を重視
+                    response_format={"type": "json_object"}
+                )
+                
+                # 結果の解析
+                result = json.loads(response.choices[0].message.content)
+                if not isinstance(result, dict) or "label" not in result:
+                    raise ValueError("Invalid JSON format: missing required fields")
+            except (json.JSONDecodeError, ValueError) as e:
+                print(f"\n警告: JSON解析エラー（試行 {attempt + 1}/{max_retries}）: {e}")
+                if attempt == max_retries - 1:
+                    raise ValueError(f"ラベル生成に失敗: {e}")
             
             # 結果の解析
             result = json.loads(response.choices[0].message.content)
