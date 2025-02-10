@@ -43,8 +43,9 @@
 
 1. クラスタサイズの分布
    ![クラスタサイズの分布](../experiments/results/size_histogram.png)
+   ![k-meansサイズ分布](../experiments/results/kmeans_same_n_size_distribution.png)
    - HDBSCANは小さなクラスタ（5-22ポイント）を多く生成
-   - k-means（同じクラスタ数）は均一なサイズのクラスタを生成
+   - k-means（同じクラスタ数）のクラスタサイズは50から300の範囲に分布し、平均149.7、標準偏差54.8（変動係数36.6%）
    - k-means（同じ平均サイズ）はHDBSCANに近い分布を示す
 
 2. クラスタ内の平均距離
