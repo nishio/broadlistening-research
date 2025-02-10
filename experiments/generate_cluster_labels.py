@@ -1,11 +1,194 @@
 import pandas as pd
 import json
+import numpy as np
 from openai import OpenAI
 import os
 
+# Base prompt for label generation with domain context
+BASE_PROMPT = """質問: AIと著作権に関する意見を分析し、各クラスタの特徴を把握する
+
+クラスタ外部の意見：
+{outside_texts}
+
+クラスタ内部の意見：
+{inside_texts}
+
+# 指示
+1. クラスタ内の意見とクラスタ外の意見を比較してください
+2. クラスタ内の意見に共通する特徴を抽出してください
+3. AIと著作権に関する具体的な論点を反映したラベルを生成してください
+4. 一般的な表現（"意見グループ"など）は避けてください
+
+# 出力形式
+以下のJSONフォーマットで回答してください：
+{{
+    "label": "具体的で意味のあるラベル（30文字以内）",
+    "description": "意見の共通点や特徴の説明（200文字以内）",
+    "keywords": ["キーワード1", "キーワード2", "キーワード3"],
+    "sentiment": "positive/negative/neutral"
+}}
+
+注意：必ず有効なJSONを出力してください。"""
+
+# Validation prompt for quality check
+VALIDATION_PROMPT = """生成されたラベルと意見グループを確認し、ラベルの質を評価してください：
+
+# ラベル
+{label}
+
+# 説明
+{description}
+
+# 意見例
+{examples}
+
+# 指示
+1. ラベルが意見グループの本質を捉えているか確認
+2. より具体的なラベルの提案（必要な場合）
+3. 代表的な意見の選択
+
+# 出力形式
+以下のJSONフォーマットで回答してください：
+{{
+    "is_valid": true,
+    "improved_label": "改善案（必要な場合）",
+    "representative_ids": ["id1", "id2", "id3"]
+}}
+
+注意：必ず有効なJSONを出力してください。"""
+
+def get_outside_cluster_samples(df, current_cluster_id, sample_size=5):
+    """クラスタ外の意見をサンプリング"""
+    outside_texts = df[df["cluster_id"] != current_cluster_id]["argument"].sample(
+        n=min(sample_size, len(df[df["cluster_id"] != current_cluster_id]))
+    ).tolist()
+    return "\n".join([f"* {text}" for text in outside_texts])
+
+def validate_label_quality(label, texts):
+    """
+    ラベルの質を検証し、必要に応じて改善
+    
+    Parameters:
+    -----------
+    label : str
+        検証するラベル
+    texts : list
+        クラスタ内のテキストリスト
+    
+    Returns:
+    --------
+    tuple(bool, str)
+        (検証結果, 失敗理由)
+    """
+    # 一般的なラベルのパターン
+    generic_patterns = [
+        "グループのラベル",
+        "意見グループ",
+        "サンプルラベル",
+        "ラベル例",
+        "未定義グループ"
+    ]
+    
+    # 検証基準
+    if any(pattern in label for pattern in generic_patterns):
+        return False, "一般的すぎるラベル"
+    
+    if len(label) < 5:
+        return False, "ラベルが短すぎる"
+    
+    if len(label) > 30:
+        return False, "ラベルが長すぎる"
+        
+    domain_keywords = ["AI", "著作権", "権利", "創作", "生成", "モデル", "学習", "データ"]
+    if not any(keyword in label for keyword in domain_keywords):
+        return False, "ドメイン固有の単語が含まれていない"
+    
+    return True, None
+
+def validate_label(client, label_info, examples):
+    """ラベルの質を検証"""
+    # まず基本的な検証を実行
+    is_valid, reason = validate_label_quality(label_info["label"], examples)
+    if not is_valid:
+        print(f"\n警告: ラベル「{label_info['label']}」は無効です（理由: {reason}）")
+    
+    # LLMによる詳細な検証を実行
+    validation_content = VALIDATION_PROMPT.format(
+        label=label_info["label"],
+        description=label_info["description"],
+        examples="\n".join([f"* {ex}" for ex in examples])
+    )
+    
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": validation_content}],
+            temperature=0.4,
+            response_format={"type": "json_object"}
+        )
+        
+        # 結果の解析
+        content = response.choices[0].message.content.strip()
+        if not content.startswith('{'):
+            content = content[content.find('{'):]
+        if not content.endswith('}'):
+            content = content[:content.rfind('}')+1]
+        
+        result = json.loads(content)
+        
+        # 必須フィールドの確認
+        required_fields = ["is_valid", "improved_label", "representative_ids"]
+        if not all(field in result for field in required_fields):
+            raise ValueError(f"Missing required fields: {[f for f in required_fields if f not in result]}")
+        
+        return result
+    except (json.JSONDecodeError, ValueError) as e:
+        print(f"\n警告: 検証結果のJSON解析エラー: {e}")
+        return {"is_valid": False, "improved_label": str(e), "representative_ids": []}
+
+def preprocess_clusters(df):
+    """
+    クラスタデータの前処理
+    - 空のクラスタを除外
+    - 最小サイズ要件の確認
+    - テキストの正規化
+    
+    Parameters:
+    -----------
+    df : pd.DataFrame
+        クラスタリング結果のDataFrame
+    
+    Returns:
+    --------
+    pd.DataFrame
+        前処理済みのDataFrame
+    """
+    print("\nクラスタの前処理を開始...")
+    original_size = len(df)
+    
+    # 空の意見を除外
+    df = df[df["argument"].notna() & (df["argument"].str.strip() != "")]
+    after_empty = len(df)
+    print(f"- 空の意見を除外: {original_size - after_empty}件")
+    
+    # クラスタごとの有効な意見数を計算
+    cluster_sizes = df.groupby("cluster_id").size()
+    valid_clusters = cluster_sizes[cluster_sizes >= 5].index
+    
+    # 有効なクラスタのみを保持
+    df = df[df["cluster_id"].isin(valid_clusters)]
+    after_size = len(df)
+    print(f"- 有効なクラスタ数: {len(valid_clusters)}件")
+    print(f"- 最終的なデータサイズ: {after_size}件（元の{original_size}件から）")
+    
+    return df
+
 def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file="cluster_labels.json"):
     """
-    クラスタリング結果からクラスタラベルを生成する
+    クラスタリング結果からクラスタラベルを生成する（2段階アプローチ）
+    
+    1. クラスタ内外の意見を比較してラベルを生成
+    2. 代表的な意見を選択して検証
     
     Parameters:
     -----------
@@ -17,6 +200,9 @@ def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file=
     # クラスタリング結果の読み込み
     df = pd.read_csv(cluster_file)
     
+    # クラスタの前処理
+    df = preprocess_clusters(df)
+    
     # OpenAI APIクライアントの初期化
     client = OpenAI()
     
@@ -27,45 +213,88 @@ def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file=
     
     print(f"\n全{total_clusters}クラスタのラベル生成を開始...")
     for i, cluster_id in enumerate(cluster_ids, 1):
+        print(f"\rクラスタ {i}/{total_clusters} のラベルを生成中...", end="")
+        
         # クラスタ内のテキストを取得
         cluster_texts = df[df["cluster_id"] == cluster_id]["argument"]
         cluster_texts = cluster_texts.fillna("").astype(str).tolist()
         
-        print(f"\rクラスタ {i}/{total_clusters} のラベルを生成中...", end="")
+        # クラスタ外のテキストを取得
+        outside_texts = get_outside_cluster_samples(df, cluster_id)
         
-        # プロンプトの作成
-        prompt = f"""以下の意見グループを分析し、JSONフォーマットで回答してください：
-
-意見グループ：
-{chr(10).join(cluster_texts)}
-
-必要な情報：
-1. label: このグループを代表する短いラベル（30文字以内）
-2. description: このグループの意見の共通点や特徴の説明（200文字以内）
-3. keywords: 主要なキーワード（3-5個）
-4. sentiment: 意見の全体的なトーン（"positive", "negative", "neutral"のいずれか）
-
-回答フォーマット：
-{{
-    "label": "グループのラベル",
-    "description": "グループの説明",
-    "keywords": ["キーワード1", "キーワード2", "キーワード3"],
-    "sentiment": "意見のトーン"
-}}"""
+        # Step 1: Generate initial label with retry logic
+        max_retries = 3
+        result = None
+        validation_reason = None
         
-        # GPT-4oによる分析
-        response = client.chat.completions.create(
-            model="gpt-4o",  # 指定されたモデル名
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.7,
-            response_format={"type": "json_object"}  # JSON形式の応答を保証
-        )
+        for attempt in range(max_retries):
+            prompt = BASE_PROMPT.format(
+                outside_texts=outside_texts,
+                inside_texts="\n".join([f"* {text}" for text in cluster_texts])
+            )
+            
+            if attempt > 0 and validation_reason:
+                # 2回目以降は、より具体的な指示を追加
+                prompt += f"\n\n# 注意\n前回の生成結果が無効でした。より具体的で、AIと著作権に関する論点を反映したラベルを生成してください。\n失敗理由: {validation_reason}"
+            
+            try:
+                # GPT-4oによる分析（低いtemperatureで一貫性を重視）
+                response = client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.4,  # 一貫性を重視
+                    response_format={"type": "json_object"}
+                )
+                
+                # 結果の解析
+                result = json.loads(response.choices[0].message.content)
+                if not isinstance(result, dict) or "label" not in result:
+                    raise ValueError("Invalid JSON format: missing required fields")
+            except (json.JSONDecodeError, ValueError) as e:
+                print(f"\n警告: JSON解析エラー（試行 {attempt + 1}/{max_retries}）: {e}")
+                if attempt == max_retries - 1:
+                    raise ValueError(f"ラベル生成に失敗: {e}")
+            
+            try:
+                # 結果の解析
+                content = response.choices[0].message.content.strip()
+                if not content.startswith('{'):
+                    content = content[content.find('{'):]
+                if not content.endswith('}'):
+                    content = content[:content.rfind('}')+1]
+                
+                result = json.loads(content)
+                
+                # 必須フィールドの確認
+                required_fields = ["label", "description", "keywords", "sentiment"]
+                if not all(field in result for field in required_fields):
+                    raise ValueError(f"Missing required fields: {[f for f in required_fields if f not in result]}")
+                
+                # Step 2: Validate and improve label
+                validation_result = validate_label(client, result, cluster_texts[:5])
+                
+                # 検証結果の確認
+                if validation_result.get("is_valid", False):
+                    break
+                
+                validation_reason = validation_result.get("improved_label", "ラベルが要件を満たしていません")
+                print(f"\n警告: 試行 {attempt + 1}/{max_retries} が失敗しました。理由: {validation_reason}")
+                
+                if attempt == max_retries - 1 and validation_result.get("improved_label"):
+                    # 最終試行でも失敗した場合は改善案を採用
+                    result["label"] = validation_result["improved_label"]
+                    print(f"\n注意: 最終的に改善案を採用: {validation_result['improved_label']}")
+            except (json.JSONDecodeError, ValueError) as e:
+                print(f"\n警告: JSON解析エラー（試行 {attempt + 1}/{max_retries}）: {e}")
+                if attempt == max_retries - 1:
+                    raise ValueError(f"ラベル生成に失敗: {e}")
         
-        # 結果の解析
-        result = json.loads(response.choices[0].message.content)
-        result["cluster_id"] = int(cluster_id)  # numpy.int64 -> int
-        result["size"] = int(len(cluster_texts))  # numpy.int64 -> int
-        result["texts"] = [str(text) for text in cluster_texts]  # ensure all texts are strings
+        # メタデータの追加
+        result["cluster_id"] = int(cluster_id)
+        result["size"] = int(len(cluster_texts))
+        result["texts"] = [str(text) for text in cluster_texts]
+        if validation_result.get("representative_ids"):
+            result["representative_ids"] = validation_result["representative_ids"]
         
         cluster_labels.append(result)
     
