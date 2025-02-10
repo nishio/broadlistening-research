@@ -12,14 +12,26 @@ def process_dataset_x():
     filtered_df = kmeans_df[kmeans_df['size'] >= 5]
     dataset_x = filtered_df.nlargest(66, 'density')
     
+    # クラスタラベルの読み込み
+    cluster_labels_df = pd.read_csv('experiments/results/hdbscan_cluster_labels.csv')
+    
     # データ型の統一とマッピング
     dataset_x['cluster_id'] = dataset_x['cluster_id'].astype(int)
-    dataset_x['data_index'] = dataset_x['data_index'].astype(str)
+    cluster_labels_df['data_index'] = cluster_labels_df['data_index'].astype(str)
     args_df['arg-id'] = args_df['arg-id'].astype(str)
     
-    # クラスタ情報とテキストデータの結合
-    dataset_x_with_args = pd.merge(
+    # クラスタIDとデータインデックスのマッピング
+    dataset_x_with_indices = pd.merge(
         dataset_x,
+        cluster_labels_df[['data_index', 'cluster']],
+        left_on='cluster_id',
+        right_on='cluster',
+        how='inner'
+    )
+    
+    # テキストデータの結合
+    dataset_x_with_args = pd.merge(
+        dataset_x_with_indices,
         args_df[['arg-id', 'argument']],
         left_on='data_index',
         right_on='arg-id',
