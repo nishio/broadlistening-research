@@ -21,8 +21,11 @@ def evaluate_cluster_labels(labels_file="cluster_labels.json", output_file="labe
     client = OpenAI()
     
     evaluations = []
+    total_labels = len(cluster_labels)
     
-    for label in cluster_labels:
+    print(f"\n全{total_labels}クラスタの評価を開始...")
+    for i, label in enumerate(cluster_labels, 1):
+        print(f"\rクラスタ {i}/{total_labels} を評価中...", end="")
         # 評価用プロンプトの作成
         prompt = f"""以下のクラスタラベルの質を100点満点で評価し、JSONフォーマットで回答してください。
 
