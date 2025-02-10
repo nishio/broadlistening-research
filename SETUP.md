@@ -1,5 +1,38 @@
 # セットアップ手順
 
+## Git LFSのセットアップ
+大規模ファイルを扱うためにGit LFSを使用します。
+
+1. Git LFSのインストール
+```bash
+# Ubuntuの場合
+sudo apt-get install git-lfs
+
+# Git LFSの初期化
+git lfs install
+```
+
+2. LFSの設定
+```bash
+# embeddings.pklをLFSで管理
+git lfs track "*.pkl"
+git add .gitattributes
+```
+
+## ブランチ管理
+1. ブランチ命名規則
+   - 形式: devin/{timestamp}-{descriptive-slug}
+   - 例: devin/1739163427-update-data-setup
+   - タイムスタンプ生成: `date +%s`
+
+2. ブランチ作成
+```bash
+# 新しいブランチの作成
+git checkout main
+git pull
+git checkout -b devin/$(date +%s)-your-feature
+```
+
 ## データファイルの取得
 
 ### 必要なファイル
