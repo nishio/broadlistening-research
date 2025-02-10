@@ -7,13 +7,17 @@ import numpy as np
 from hdbscan import HDBSCAN
 from scipy.spatial.distance import pdist, squareform
 
+# グローバル変数の設定
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+data_dir = os.path.join(base_dir, 'dataset/aipubcom')
+
 def check_data_files():
     """必要なデータファイルの存在を確認"""
     required_files = ['embeddings.pkl', 'args.csv']
     for file in required_files:
-        path = os.path.join('../../dataset/aipubcom', file)
+        path = os.path.join(data_dir, file)
         if not os.path.exists(path):
-            print(f"Error: Required file {file} not found in dataset/aipubcom/")
+            print(f"Error: Required file {file} not found in {data_dir}")
             sys.exit(1)
 
 # データファイルの確認
@@ -21,8 +25,8 @@ check_data_files()
 
 # データの読み込み
 try:
-    embeddings_df = pd.read_pickle('../../dataset/aipubcom/embeddings.pkl')
-    arguments_df = pd.read_csv('../../dataset/aipubcom/args.csv')
+    embeddings_df = pd.read_pickle(os.path.join(data_dir, 'embeddings.pkl'))
+    arguments_df = pd.read_csv(os.path.join(data_dir, 'args.csv'))
 except Exception as e:
     print(f"Error loading data files: {str(e)}")
     sys.exit(1)
@@ -83,7 +87,7 @@ results = {
 }
 
 # 結果をJSONとして保存
-results_dir = '../experiments/results'
+results_dir = os.path.join(base_dir, 'experiments/results')
 os.makedirs(results_dir, exist_ok=True)
 results_file = os.path.join(results_dir, 'hdbscan_detailed_results.json')
 with open(results_file, 'w') as f:
