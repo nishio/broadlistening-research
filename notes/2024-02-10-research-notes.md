@@ -41,11 +41,31 @@
    - HDBSCANの方が密度ベースの分析に適している
 
 ### 実装状況
-- ブランチ名: `devin/1739152253-implement-clustering`
+- ブランチ名: `devin/1739154755-fix-experiment-structure`
 - 作業ディレクトリ構造:
   - `/notes`: 研究ノート保存用
-  - `/outputs/anno-broadlistening`: データセット保存用
-  - `clustering_comparison.py`: クラスタリング実験の実装
-  - `cluster_comparison.png`: 結果の可視化
-  - `kmeans_cluster_metrics.csv`: k-meansの評価指標
-  - `hdbscan_cluster_metrics.csv`: HDBSCANの評価指標
+  - `/dataset/aipubcom`: データセット保存用
+  - `/experiments`: 実験スクリプト保存用
+    - `clustering_comparison.py`: クラスタリング実験の実装
+    - `cluster_comparison.png`: 結果の可視化
+    - `kmeans_cluster_metrics.csv`: k-meansの評価指標
+    - `hdbscan_cluster_metrics.csv`: HDBSCANの評価指標
+
+### 実験結果（改善版）
+1. シルエット係数
+   - HDBSCAN: 0.115（密度ベースのクラスタリングがより効果的）
+   - k-means: 0.024
+
+2. クラスタの特徴
+   - HDBSCAN
+     * 平均サイズ: 4.45（より小さく密度の高いクラスタ）
+     * 平均密度: 1.183
+     * 平均距離: 0.851
+   - k-means
+     * 平均サイズ: 12.55（より大きく疎なクラスタ）
+     * 平均密度: 0.999
+     * 平均距離: 1.003
+
+3. クラスタ数
+   - 両アルゴリズムとも11クラスタを形成
+   - HDBSCANはより自然な密度ベースのクラスタリングを実現
