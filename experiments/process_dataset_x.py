@@ -15,7 +15,13 @@ def process_dataset_x():
     
     # クラスタIDとarg-idのマッピング
     cluster_mapping = cluster_labels_df[['data_index', 'cluster']]
+    cluster_mapping['cluster'] = cluster_mapping['cluster'].astype(int)
     cluster_mapping = cluster_mapping.rename(columns={'cluster': 'cluster_id'})
+    
+    # データ型の統一
+    dataset_x['cluster_id'] = dataset_x['cluster_id'].astype(int)
+    cluster_mapping['data_index'] = cluster_mapping['data_index'].astype(str)
+    args_df['arg-id'] = args_df['arg-id'].astype(str)
     
     # クラスタ情報とテキストデータの結合
     dataset_x_with_args = pd.merge(
