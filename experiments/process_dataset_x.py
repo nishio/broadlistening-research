@@ -7,35 +7,23 @@ def process_dataset_x():
     # データの読み込み
     kmeans_df = pd.read_csv('experiments/results/kmeans_same_size_metrics.csv')
     args_df = pd.read_csv('dataset/aipubcom/args.csv')
-    cluster_labels_df = pd.read_csv('experiments/results/hdbscan_cluster_labels.csv')
     
     # サイズ5以上のクラスタをフィルタリング
     filtered_df = kmeans_df[kmeans_df['size'] >= 5]
     dataset_x = filtered_df.nlargest(66, 'density')
     
-    # クラスタIDとarg-idのマッピング
-    cluster_mapping = cluster_labels_df[['data_index', 'cluster']]
-    cluster_mapping['cluster'] = cluster_mapping['cluster'].astype(int)
-    cluster_mapping = cluster_mapping.rename(columns={'cluster': 'cluster_id'})
-    
-    # データ型の統一
+    # データ型の統一とマッピング
     dataset_x['cluster_id'] = dataset_x['cluster_id'].astype(int)
-    cluster_mapping['data_index'] = cluster_mapping['data_index'].astype(str)
+    dataset_x['data_index'] = dataset_x['data_index'].astype(str)
     args_df['arg-id'] = args_df['arg-id'].astype(str)
     
     # クラスタ情報とテキストデータの結合
     dataset_x_with_args = pd.merge(
         dataset_x,
-        cluster_mapping,
-        on='cluster_id',
-        how='left'
-    )
-    dataset_x_with_args = pd.merge(
-        dataset_x_with_args,
         args_df[['arg-id', 'argument']],
         left_on='data_index',
         right_on='arg-id',
-        how='left'
+        how='inner'  # 有効なデータのみを使用
     )
     
     # クラスタ情報をCSVとして保存
