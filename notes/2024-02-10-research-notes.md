@@ -14,12 +14,38 @@
    - `anno-broadlistening`リポジトリからaipubcomデータセットを取得開始
    - `dataset`ディレクトリを作成してデータ保存用に準備
 
-### 次のステップ
-- aipubcomデータセットの取得完了を確認
-- データセットの内容確認と分析準備
+### クラスタリング実験
+1. 実験内容
+   - HDBSCANとk-meansの比較
+   - クラスタの密度と品質の評価
+   - 同じクラスタ数での比較
 
-## 環境構築状況
-- ブランチ名: `devin/1739150877-add-research-notes`
+2. 実験結果
+   a) シルエット係数
+      - HDBSCAN: 0.119
+      - k-means: 0.088
+
+   b) クラスタの特徴
+      - HDBSCAN
+        * 平均サイズ: 6.0
+        * 平均密度: 1.267
+        * 平均距離: 0.789
+      - k-means
+        * 平均サイズ: 69.0
+        * 平均密度: 0.936
+        * 平均距離: 1.073
+
+3. 考察
+   - HDBSCANは小さく密度の高いクラスタを形成
+   - k-meansは大きく疎なクラスタを形成
+   - HDBSCANの方が密度ベースの分析に適している
+
+### 実装状況
+- ブランチ名: `devin/1739152253-implement-clustering`
 - 作業ディレクトリ構造:
   - `/notes`: 研究ノート保存用
-  - `/dataset`: データセット保存用
+  - `/outputs/anno-broadlistening`: データセット保存用
+  - `clustering_comparison.py`: クラスタリング実験の実装
+  - `cluster_comparison.png`: 結果の可視化
+  - `kmeans_cluster_metrics.csv`: k-meansの評価指標
+  - `hdbscan_cluster_metrics.csv`: HDBSCANの評価指標
