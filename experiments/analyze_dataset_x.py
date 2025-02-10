@@ -54,6 +54,8 @@ def analyze_dataset_x_results():
             print(f"ラベル: {row['label']}")
             print(f"総合スコア: {row['total_score']}")
             print(f"フィードバック: {row['feedback']}")
+    except Exception as e:
+        print(f"分析中にエラーが発生しました: {e}")
 
 if __name__ == "__main__":
     analyze_dataset_x_results()
