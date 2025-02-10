@@ -50,6 +50,16 @@ hdbscan_labels, kmeans_labels = perform_clustering(embeddings_array)
 
 # 密度指標の計算関数
 def calculate_density_metrics(embeddings, labels, exclude_noise=False):
+    """クラスタの密度指標を計算する関数
+    
+    Args:
+        embeddings: 埋め込みベクトルの配列
+        labels: クラスタラベルの配列
+        exclude_noise: ノイズクラスタ（-1）を除外するかどうか
+    
+    Returns:
+        pd.DataFrame: クラスタごとの密度指標
+    """
     metrics = []
     unique_labels = np.unique(labels)
     if exclude_noise:
@@ -69,7 +79,12 @@ def calculate_density_metrics(embeddings, labels, exclude_noise=False):
                 'max_distance': max_distance,
                 'density': 1.0 / (avg_distance + 1e-10)  # 密度指標（平均距離の逆数）
             })
-    return pd.DataFrame(metrics)
+    
+    # メトリクスをDataFrameに変換し、cluster_idでソート
+    metrics_df = pd.DataFrame(metrics)
+    if not metrics_df.empty:
+        metrics_df = metrics_df.sort_values('cluster_id').reset_index(drop=True)
+    return metrics_df
 
 # 両アルゴリズムの密度指標を計算
 kmeans_metrics = calculate_density_metrics(embeddings_array, kmeans_labels)
