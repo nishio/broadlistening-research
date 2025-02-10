@@ -47,11 +47,12 @@ def generate_cluster_labels(cluster_file="clustered_arguments.csv", output_file=
     "sentiment": "意見のトーン"
 }}"""
         
-        # GPT-4による分析
+        # GPT-4oによる分析
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o",  # 指定されたモデル名
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.7
+            temperature=0.7,
+            response_format={"type": "json_object"}  # JSON形式の応答を保証
         )
         
         # 結果の解析
