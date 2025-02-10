@@ -16,17 +16,22 @@ def process_dataset_x():
     dataset_x['cluster_id'] = dataset_x['cluster_id'].astype(int)
     args_df['arg-id'] = args_df['arg-id'].astype(str)
     
-    # データインデックスの生成（A{cluster_id}_0 形式）
-    dataset_x['data_index'] = 'A' + dataset_x['cluster_id'].astype(str) + '_0'
+    # クラスタごとの全ての意見を取得
+    all_args = []
+    for _, row in dataset_x.iterrows():
+        cluster_id = row['cluster_id']
+        # クラスタIDに対応する全ての意見を取得（A{cluster_id}_* 形式）
+        cluster_args = args_df[args_df['arg-id'].str.startswith(f'A{cluster_id}_')]
+        if not cluster_args.empty:
+            cluster_row = row.copy()
+            for _, arg_row in cluster_args.iterrows():
+                new_row = cluster_row.copy()
+                new_row['data_index'] = arg_row['arg-id']
+                new_row['argument'] = arg_row['argument']
+                all_args.append(new_row)
     
-    # テキストデータの結合
-    dataset_x_with_args = pd.merge(
-        dataset_x,
-        args_df[['arg-id', 'argument']],
-        left_on='data_index',
-        right_on='arg-id',
-        how='left'  # クラスタ情報を保持
-    )
+    # 結果をDataFrameに変換
+    dataset_x_with_args = pd.DataFrame(all_args)
     
     # 空の意見を除外
     dataset_x_with_args = dataset_x_with_args[dataset_x_with_args['argument'].notna()]
