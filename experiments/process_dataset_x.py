@@ -16,12 +16,15 @@ def process_dataset_x():
     dataset_x['cluster_id'] = dataset_x['cluster_id'].astype(int)
     args_df['arg-id'] = args_df['arg-id'].astype(str)
     
+    # arg-idからクラスタIDを抽出（例：A123_0 → 123）
+    args_df['extracted_id'] = args_df['arg-id'].str.extract(r'A(\d+)_').astype(int)
+    
     # クラスタごとの全ての意見を取得
     all_args = []
     for _, row in dataset_x.iterrows():
         cluster_id = row['cluster_id']
-        # クラスタIDに対応する全ての意見を取得（A{cluster_id}_* 形式）
-        cluster_args = args_df[args_df['arg-id'].str.startswith(f'A{cluster_id}_')]
+        cluster_args = args_df[args_df['extracted_id'] == cluster_id]
+        
         if not cluster_args.empty:
             for _, arg_row in cluster_args.iterrows():
                 new_row = {
@@ -36,16 +39,21 @@ def process_dataset_x():
                 all_args.append(new_row)
     
     # 結果をDataFrameに変換
-    dataset_x_with_args = pd.DataFrame(all_args)
-    
-    # 空の意見を除外
-    if len(dataset_x_with_args) > 0:
+    if len(all_args) > 0:
+        dataset_x_with_args = pd.DataFrame(all_args)
+        # 空の意見を除外
         dataset_x_with_args = dataset_x_with_args[dataset_x_with_args['argument'].notna()]
         print(f"\n有効なクラスタ数: {len(dataset_x_with_args['cluster_id'].unique())}件")
         print(f"有効な意見数: {len(dataset_x_with_args)}件")
-    
-    # クラスタ情報をCSVとして保存
-    dataset_x_with_args.to_csv('experiments/results/dataset_x_clusters.csv', index=False)
+        
+        # カラムの順序を整理
+        columns = ['cluster_id', 'size', 'avg_distance', 'max_distance', 'density', 'data_index', 'argument']
+        dataset_x_with_args = dataset_x_with_args[columns]
+        
+        # クラスタ情報をCSVとして保存
+        dataset_x_with_args.to_csv('experiments/results/dataset_x_clusters.csv', index=False)
+    else:
+        print("\n警告: 有効なデータが見つかりませんでした")
     
     print(f"Dataset Xの準備完了（{len(dataset_x)}クラスタ）")
     print("カラム一覧:", dataset_x_with_args.columns.tolist())
