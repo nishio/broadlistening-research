@@ -51,11 +51,12 @@ def evaluate_cluster_labels(labels_file="cluster_labels.json", output_file="labe
     "feedback": "改善点や評価理由の説明（200文字以内）"
 }}"""
         
-        # GPT-4による評価
+        # GPT-4oによる評価
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o",  # 指定されたモデル名
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.3  # 評価の一貫性のため低めの温度を設定
+            temperature=0.3,  # 評価の一貫性のため低めの温度を設定
+            response_format={"type": "json_object"}  # JSON形式の応答を保証
         )
         
         # 評価結果の解析
