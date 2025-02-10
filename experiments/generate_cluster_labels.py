@@ -20,12 +20,15 @@ BASE_PROMPT = """質問: AIと著作権に関する意見を分析し、各ク�
 4. 一般的な表現（"意見グループ"など）は避けてください
 
 # 出力形式
-{
+以下のJSONフォーマットで回答してください：
+{{
     "label": "具体的で意味のあるラベル（30文字以内）",
     "description": "意見の共通点や特徴の説明（200文字以内）",
     "keywords": ["キーワード1", "キーワード2", "キーワード3"],
     "sentiment": "positive/negative/neutral"
-}"""
+}}
+
+注意：必ず有効なJSONを出力してください。"""
 
 # Validation prompt for quality check
 VALIDATION_PROMPT = """生成されたラベルと意見グループを確認し、ラベルの質を評価してください：
