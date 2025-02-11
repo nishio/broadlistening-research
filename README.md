@@ -56,7 +56,3 @@ python experiments/clustering/large_kmeans_experiments.py
 - 研究ノート: `notes/`
 
 詳細な実験の対応関係は[EXPERIMENT_MAPPING.md](EXPERIMENT_MAPPING.md)を参照してください。
-
-## NISHIOからのコメント
-
-HDBSCANの結果が保存されていなかった。複雑な処理の結果は必ず再実行が必要ないように保存すべき、そのファイルがどの実験によって作られたのかを明記すべき、後続の実験はどのデータを元に処理したのか記録すべき。
