@@ -1,9 +1,4 @@
-__pycache__/
-experiments/results/test_*.csv
-# Temporary scripts and results
+# Temporary analysis scripts
 analyze_hdbscan.py
 verify_clusters.py
 verify_kmeans_results.py
-kmeans_large.py
-kmeans_only.py
-experiments/results/kmeans_large_cluster_labels.csv
