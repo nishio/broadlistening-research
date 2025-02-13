@@ -36,7 +36,7 @@ pip install numpy pandas scikit-learn hdbscan umap-learn
 │   ├── clustering/    # クラスタリング実験
 │   └── results/       # 実験結果
 ├── reports/           # 実験レポート
-└── notes/            # 研究ノート
+└── notes/            # 研究ノート（ファイル名: YYYY-MM-DD.md）
 ```
 
 ## 実験の実行方法
