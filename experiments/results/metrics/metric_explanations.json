@@ -1,12 +1,3 @@
-{
-  "cluster_count": "クラスタの総数。データの分割粒度を示す。",
-  "avg_cluster_size": "クラスタの平均サイズ。クラスタの典型的な大きさを示す。",
-  "std_cluster_size": "クラスタサイズの標準偏差。サイズのばらつきを示す。",
-  "size_range": "クラスタサイズの範囲（最小値、最大値）。サイズの分布を示す。",
-  "avg_density": "平均密度。クラスタ内の点の密集度を示す。高いほど凝集性が高い。",
-  "density_std": "密度の標準偏差。密度のばらつきを示す。",
-  "density_range": "密度の範囲。クラスタの密度分布を示す。",
-  "avg_distance": "クラスタ内の平均距離。クラスタの広がりを示す。",
-  "distance_std": "距離の標準偏差。距離のばらつきを示す。",
-  "max_distance": "最大距離。クラスタの最大の広がりを示す。"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4c5a2f5564ebec8daedfbe3739445959a64b3cb92d9b60e0a0064d390a70b505
+size 927
