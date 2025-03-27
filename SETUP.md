@@ -38,27 +38,3 @@ git add .gitattributes
 pip install numpy pandas scikit-learn hdbscan umap-learn
 ```
 
-2. ディレクトリ構造の確認
-```bash
-tree -L 2
-```
-
-以下の構造になっていることを確認：
-```
-.
-├── dataset/
-│   └── aipubcom/      # パブコメデータセット
-├── experiments/
-│   ├── core/          # 基本的なユーティリティ
-│   ├── clustering/    # クラスタリング実験
-│   └── results/       # 実験結果
-├── reports/           # 実験レポート
-└── notes/            # 研究ノート
-```
-
-## トラブルシューティング
-
-### メモリ不足エラーが発生する場合
-- 最低16GBのRAMを推奨
-- スワップ領域の確保を検討
-- 必要に応じてサブセットでのテスト実行を検討
