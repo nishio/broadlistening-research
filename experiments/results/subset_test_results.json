@@ -1,20 +1,3 @@
-{
-  "execution_time": 4.474011421203613,
-  "n_clusters": 7,
-  "n_noise": 931,
-  "noise_ratio": 0.931,
-  "cluster_sizes": {
-    "0": 7,
-    "1": 7,
-    "2": 5,
-    "3": 9,
-    "4": 8,
-    "5": 8,
-    "6": 25
-  },
-  "timestamp": "2025-02-10T03:40:21.022707",
-  "data_shape": [
-    9883,
-    3072
-  ]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:17a575a590ee25711e2c19b5ae161334178874b30abc0cb92fea32e2c451d33f
+size 299
