@@ -33,6 +33,11 @@ except ImportError:
 # OpenAI APIキーの設定
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
+# 日本語フォントの設定（macOS）
+matplotlib.rcParams['font.family'] = 'Hiragino Sans'
+# マイナス記号の文字化け対策
+matplotlib.rcParams['axes.unicode_minus'] = False
+
 def load_comments(json_path):
     """
     JSONファイルから個別コメントとtopic情報を抽出
