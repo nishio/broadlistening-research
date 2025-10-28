@@ -273,3 +273,23 @@ cluster_labels.json
 4. **研究ノートの命名規則**: `notes/` ディレクトリのファイルは「日付-連番-内容」の形式で命名されている
 
 5. **2025-02の実験コード**: 初期段階のコードは参考として残されているが、新しい実験には `2025-03/clustering_param_experiment/` を使用すること
+
+6. **matplotlibでの日本語表示**: グラフに日本語を含める場合は、必ず日本語フォントを設定すること。設定しないと文字化けが発生する。以下のコードをmatplotlibのimport直後に追加すること：
+
+   ```python
+   import matplotlib.pyplot as plt
+   import matplotlib
+
+   # 日本語フォントの設定（macOS）
+   matplotlib.rcParams['font.family'] = 'Hiragino Sans'
+   # または
+   # matplotlib.rcParams['font.sans-serif'] = ['Hiragino Sans', 'Yu Gothic', 'Meirio', 'Takao', 'IPAexGothic', 'IPAPGothic']
+
+   # マイナス記号の文字化け対策
+   matplotlib.rcParams['axes.unicode_minus'] = False
+   ```
+
+   **環境別のフォント例**:
+   - macOS: `'Hiragino Sans'`, `'Hiragino Kaku Gothic Pro'`, `'Yu Gothic'`
+   - Windows: `'Yu Gothic'`, `'MS Gothic'`, `'Meiryo'`
+   - Linux: `'Takao'`, `'IPAexGothic'`, `'Noto Sans CJK JP'`
