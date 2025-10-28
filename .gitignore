@@ -4,3 +4,5 @@ verify_clusters.py
 verify_kmeans_results.py
 
 .DS_Store
+
+.claude
