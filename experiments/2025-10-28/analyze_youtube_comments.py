@@ -30,8 +30,8 @@ try:
 except ImportError:
     print("Warning: python-dotenv not installed. Using environment variables only.")
 
-# OpenAI APIキーの設定
-openai.api_key = os.environ.get("OPENAI_API_KEY")
+# OpenAI クライアントの初期化
+client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 # 日本語フォントの設定（macOS）
 matplotlib.rcParams['font.family'] = 'Hiragino Sans'
@@ -130,11 +130,11 @@ def generate_embeddings(comments, model="text-embedding-3-small", batch_size=100
 
     for i in tqdm(range(0, len(texts), batch_size), desc="Embedding generation"):
         batch_texts = texts[i:i+batch_size]
-        response = openai.Embedding.create(
+        response = client.embeddings.create(
             model=model,
             input=batch_texts
         )
-        batch_embeddings = [item['embedding'] for item in response['data']]
+        batch_embeddings = [item.embedding for item in response.data]
         embeddings_list.extend(batch_embeddings)
 
     embeddings_array = np.array(embeddings_list)

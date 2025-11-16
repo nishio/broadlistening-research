@@ -1,0 +1,13 @@
+jigsaw-sensemaker
+node_modules
+*.pdf
+arguments.csv
+arguments_full.json
+arguments_sensemaker.csv
+arguments_sample_*.csv
+index.html
+data.json
+suishin.html
+*.log
+categorized_results.csv
+categorized_results.json

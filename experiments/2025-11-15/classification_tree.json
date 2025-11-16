@@ -1,0 +1,145 @@
+{
+  "title": "「未来の東京」の実現に向けた重点政策方針2024",
+  "source": "東京都 令和6年（2024年）8月",
+  "description": "ブロードリスニング前の公式な政策分類体系",
+  "categories": [
+    {
+      "id": "diversity",
+      "name": "ダイバーシティ",
+      "description": "全ての人が輝く東京へ",
+      "subcategories": [
+        {
+          "id": "diversity_01",
+          "name": "人への投資をさらに強化",
+          "description": "人口減少に正面から向き合い、人への投資をさらに強化"
+        },
+        {
+          "id": "diversity_02",
+          "name": "子育てしやすい東京",
+          "description": "子育てしやすい東京を目指し、シームレスに支援"
+        },
+        {
+          "id": "diversity_03",
+          "name": "子供・若者の成長支援",
+          "description": "未来を担う子供・若者の成長を社会全体で支える"
+        },
+        {
+          "id": "diversity_04",
+          "name": "未来を創造する人材を育成",
+          "description": "世界に羽ばたき、未来を創造する人材を育成"
+        },
+        {
+          "id": "diversity_05",
+          "name": "誰もが活躍できる社会を目指す",
+          "description": "誰もがポジティブに活躍できる社会を目指し、働き方を改革"
+        },
+        {
+          "id": "diversity_06",
+          "name": "いきいきと輝けるChōju社会",
+          "description": "高齢者が安心して、いきいきと輝けるChōju社会を実現"
+        },
+        {
+          "id": "diversity_07",
+          "name": "インクルーシブシティ東京",
+          "description": "誰もが自分らしく生きるインクルーシブシティ東京"
+        }
+      ]
+    },
+    {
+      "id": "smart_city",
+      "name": "スマートシティ",
+      "description": "活力あふれる東京へ",
+      "subcategories": [
+        {
+          "id": "smart_01",
+          "name": "日本の持続的成長を牽引",
+          "description": "東京の強みや魅力を活かし、日本の持続的成長を牽引"
+        },
+        {
+          "id": "smart_02",
+          "name": "企業を支え変革を後押し",
+          "description": "企業活動を支え、成長に向けた変革を後押し"
+        },
+        {
+          "id": "smart_03",
+          "name": "イノベーションを創出",
+          "description": "スタートアップと金融の力で、新たなイノベーションを創出"
+        },
+        {
+          "id": "smart_04",
+          "name": "質の高いデジタルサービス",
+          "description": "質の高い便利で身近なデジタルサービスを爆速で展開"
+        },
+        {
+          "id": "smart_05",
+          "name": "成長を支える都市基盤",
+          "description": "首都東京の成長を支える都市基盤の強化"
+        },
+        {
+          "id": "smart_06",
+          "name": "魅力を高めるまちづくり",
+          "description": "成熟都市として、魅力を高めるまちづくり"
+        },
+        {
+          "id": "smart_07",
+          "name": "みどりと生きるまちづくり",
+          "description": "世界に選ばれる自然と調和した、みどりと生きるまちづくり"
+        },
+        {
+          "id": "smart_08",
+          "name": "観光、芸術文化、スポーツ",
+          "description": "観光、芸術文化、スポーツの力で世界中を惹きつける"
+        },
+        {
+          "id": "smart_09",
+          "name": "東京のポテンシャルを発揮（江戸・多摩・島しょ）",
+          "description": "東京のポテンシャルを最大限発揮し、世界を魅了"
+        }
+      ]
+    },
+    {
+      "id": "safe_city",
+      "name": "セーフシティ",
+      "description": "安全・安心な東京へ",
+      "subcategories": [
+        {
+          "id": "safe_01",
+          "name": "都民の命と暮らしを守る",
+          "description": "あらゆる危機に万全に備え、都民の命と暮らしを守る"
+        },
+        {
+          "id": "safe_02",
+          "name": "都民と地域の防災力を高める",
+          "description": "都民一人ひとりの備えと、地域の防災力をともに高める"
+        },
+        {
+          "id": "safe_03",
+          "name": "暮らしの安心が守られた東京",
+          "description": "犯罪、火災、病気への備えなど、暮らしの安心が守られた東京"
+        },
+        {
+          "id": "safe_04",
+          "name": "脱炭素化とエネルギー安全保障",
+          "description": "脱炭素化とエネルギー安全保障の一体的な実現"
+        },
+        {
+          "id": "safe_05",
+          "name": "水素の社会実装を加速",
+          "description": "脱炭素社会の切り札として、水素の社会実装を加速"
+        },
+        {
+          "id": "safe_06",
+          "name": "循環型都市を実現",
+          "description": "資源の大消費地・東京で循環型都市を実現"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "total_categories": 3,
+    "total_subcategories": 22,
+    "created_date": "2025-11-15",
+    "purpose": "Jigsaw SenseMaker classification experiment",
+    "notes": "この分類体系を使って、ブロードリスニングで収集された27,657件の意見を分類する実験を行う"
+  }
+}

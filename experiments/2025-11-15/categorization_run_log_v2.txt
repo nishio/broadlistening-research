@@ -1,0 +1,427 @@
+================================================================================
+Tokyo Metropolitan Government Classification Experiment
+================================================================================
+
+[1/5] Loading classification tree...
+  ✓ Loaded 3 major categories
+  ✓ Total 22 subcategories
+
+Major categories:
+  1. ダイバーシティ (7 subcategories)
+  2. スマートシティ (9 subcategories)
+  3. セーフシティ (6 subcategories)
+
+[2/5] Loading comments...
+  ✓ Loaded 1000 comments
+  ✓ Average comment length: 39.4 characters
+
+[3/5] Categorizing comments with LLM...
+  This will call Gemini API via Vertex AI.
+  Additional context: "東京都のブロードリスニングで収集された市民の意見を、既存の政策分類体系に分類する。"
+  Starting categorization...
+Creating VertexModel with  2  parallel workers...
+Identifying topics and categorizing statements at depth= 0
+Categorizing 1000 statements in batches (10 batches of 100 statements)
+Attempt 1 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"containerInfo":"gen-lang-client-0654710684","consumer":"projects/gen-lang-client-0654710684","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","service":"aiplatform.googleapis.com","serviceTitle":"Vertex AI API"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 1)
+Attempt 1 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684","consumer":"projects/gen-lang-client-0654710684","serviceTitle":"Vertex AI API","service":"aiplatform.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 1)
+Attempt 2 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","serviceTitle":"Vertex AI API","consumer":"projects/gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684","service":"aiplatform.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 2)
+Attempt 2 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"serviceTitle":"Vertex AI API","consumer":"projects/gen-lang-client-0654710684","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684","service":"aiplatform.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 2)
+Attempt 3 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"containerInfo":"gen-lang-client-0654710684","consumer":"projects/gen-lang-client-0654710684","service":"aiplatform.googleapis.com","serviceTitle":"Vertex AI API","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 3)
+Attempt 3 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","consumer":"projects/gen-lang-client-0654710684","service":"aiplatform.googleapis.com","serviceTitle":"Vertex AI API","containerInfo":"gen-lang-client-0654710684"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 3)
+Attempt 4 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"containerInfo":"gen-lang-client-0654710684","consumer":"projects/gen-lang-client-0654710684","service":"aiplatform.googleapis.com","serviceTitle":"Vertex AI API","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 4)
+Attempt 4 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","service":"aiplatform.googleapis.com","serviceTitle":"Vertex AI API","containerInfo":"gen-lang-client-0654710684","consumer":"projects/gen-lang-client-0654710684"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 4)
+Attempt 5 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684","consumer":"projects/gen-lang-client-0654710684","serviceTitle":"Vertex AI API","service":"aiplatform.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 5)
+Attempt 5 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"service":"aiplatform.googleapis.com","consumer":"projects/gen-lang-client-0654710684","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684","serviceTitle":"Vertex AI API"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 5)
+Attempt 6 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"service":"aiplatform.googleapis.com","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","serviceTitle":"Vertex AI API","consumer":"projects/gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 6)
+Attempt 6 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"containerInfo":"gen-lang-client-0654710684","service":"aiplatform.googleapis.com","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","serviceTitle":"Vertex AI API","consumer":"projects/gen-lang-client-0654710684"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 6)
+Attempt 7 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"consumer":"projects/gen-lang-client-0654710684","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684","service":"aiplatform.googleapis.com","serviceTitle":"Vertex AI API"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 7)
+Attempt 7 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","serviceTitle":"Vertex AI API","service":"aiplatform.googleapis.com","consumer":"projects/gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 7)
+Attempt 8 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"consumer":"projects/gen-lang-client-0654710684","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684","service":"aiplatform.googleapis.com","serviceTitle":"Vertex AI API"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 8)
+Attempt 8 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"consumer":"projects/gen-lang-client-0654710684","service":"aiplatform.googleapis.com","containerInfo":"gen-lang-client-0654710684","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","serviceTitle":"Vertex AI API"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 8)
+Attempt 9 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"service":"aiplatform.googleapis.com","consumer":"projects/gen-lang-client-0654710684","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","containerInfo":"gen-lang-client-0654710684","serviceTitle":"Vertex AI API"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 9)
+Attempt 9 failed: ClientError: [VertexAI.ClientError]: got status: 403 Forbidden. {"error":{"code":403,"message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"containerInfo":"gen-lang-client-0654710684","service":"aiplatform.googleapis.com","activationUrl":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684","serviceTitle":"Vertex AI API","consumer":"projects/gen-lang-client-0654710684"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684"}]}]}}
+    at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:47:21)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+  stackTrace: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  },
+  [cause]: GoogleApiError: Vertex AI API has not been used in project gen-lang-client-0654710684 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/aiplatform.googleapis.com/overview?project=gen-lang-client-0654710684 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+      at throwErrorIfNotOK (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/post_fetch_processing.ts:49:9)
+      at processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async generateContentStream (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/node_modules/.pnpm/@google-cloud+vertexai@1.10.0/node_modules/@google-cloud/vertexai/src/functions/generate_content.ts:150:3) {
+    code: 403,
+    status: 'PERMISSION_DENIED',
+    errorDetails: [ [Object], [Object], [Object] ]
+  }
+}
+Retrying in 5 seconds (attempt 9)
+/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/src/sensemaker_utils.ts:18
+import { RETRY_DELAY_MS } from "./models/model_util";
+                                                         ^
+Error: Failed after 9 attempts: Failed to get a valid model response.
+    at /Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/src/sensemaker_utils.ts:70:9
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/nishio/broadlistening-research/experiments/2025-11-15/jigsaw-sensemaker/library/src/sensemaker_utils.ts:18:58)

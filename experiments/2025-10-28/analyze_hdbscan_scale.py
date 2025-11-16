@@ -143,15 +143,24 @@ ax.grid(alpha=0.3)
 
 # 3. Core distanceの分布（クラスタごと）
 ax = axes[1, 0]
+# Core distanceの全体範囲を取得
+all_core_distances = []
 for cluster_id in cluster_ids:
     cluster_mask = hdbscan_labels == cluster_id
     cluster_core_distances = core_distances[cluster_mask]
-    ax.hist(cluster_core_distances, bins=30, alpha=0.5, label=f'C{cluster_id}')
+    all_core_distances.extend(cluster_core_distances)
+max_core_distance = np.max(all_core_distances)
+
+for cluster_id in cluster_ids:
+    cluster_mask = hdbscan_labels == cluster_id
+    cluster_core_distances = core_distances[cluster_mask]
+    ax.hist(cluster_core_distances, bins=30, alpha=0.5, range=(0, max_core_distance), label=f'C{cluster_id}')
 ax.set_xlabel(f'Core Distance (min_samples={min_samples})', fontsize=11)
 ax.set_ylabel('点数', fontsize=11)
 ax.set_title(f'クラスタごとのCore Distance分布\n（各点の{min_samples}番目近傍までの距離）', fontsize=12)
 ax.legend(fontsize=9)
 ax.grid(alpha=0.3)
+ax.set_xlim(0, max_core_distance * 1.05)
 
 # 4. k近傍での純度の分布（k=15の場合）
 ax = axes[1, 1]
@@ -159,6 +168,9 @@ k_display = 15
 nn_display = NearestNeighbors(n_neighbors=k_display+1, metric='euclidean')
 nn_display.fit(embeddings_sampled)
 distances_display, indices_display = nn_display.kneighbors(embeddings_sampled)
+
+# binエッジを15近傍の離散値に合わせる（0/15, 1/15, 2/15, ..., 15/15）
+bin_edges = np.linspace(0, 1, k_display + 2)
 
 for cluster_id in cluster_ids:
     cluster_mask = hdbscan_labels == cluster_id
@@ -169,13 +181,14 @@ for cluster_id in cluster_ids:
         same_ratio = np.sum(neighbor_labels == cluster_id) / k_display
         cluster_ratios.append(same_ratio)
 
-    ax.hist(cluster_ratios, bins=20, alpha=0.5, label=f'C{cluster_id}')
+    ax.hist(cluster_ratios, bins=bin_edges, alpha=0.5, range=(0, 1), label=f'C{cluster_id}')
 
 ax.set_xlabel(f'{k_display}近傍での同一クラスタ割合', fontsize=11)
 ax.set_ylabel('点数', fontsize=11)
 ax.set_title(f'クラスタごとの近傍純度分布 (k={k_display})', fontsize=12)
 ax.legend(fontsize=9)
 ax.grid(alpha=0.3)
+ax.set_xlim(0, 1.0)
 
 plt.tight_layout()
 plt.savefig('hdbscan_scale_analysis.png', dpi=150, bbox_inches='tight')
